@@ -45,12 +45,7 @@ home = os.path.expanduser('~')
 
 @lazy.function
 def muteVolume(qtile):
-    output = subprocess.check_output(['amixer', 'sget', 'Master']).decode()
-    current_volume = int(output.split('[')[1].split('%')[0])
-    if current_volume == 0:
-        subprocess.call(['amixer', '-q', 'sset', 'Master', "100%"])
-    else:
-        subprocess.call(['amixer', '-q', 'sset', 'Master', "0%"])
+    subprocess.call(['amixer', '-D', 'pulse', 'set', "Master", "1+", "toggle"])
 
 @lazy.function
 def increaseVolume(qtile):
