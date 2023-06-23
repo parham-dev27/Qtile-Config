@@ -112,7 +112,6 @@ keys = [
     Key([mod], "q", lazy.window.kill()),
 
 # SUPER + SHIFT KEYS
-    Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
 
 # QTILE LAYOUT KEYS
