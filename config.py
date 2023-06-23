@@ -28,10 +28,9 @@
 
 
 import os
-import socket
 import subprocess
 from libqtile import layout, bar, hook
-from libqtile.config import Drag, Group, Key, Match, Screen, KeyChord
+from libqtile.config import Drag, Group, Key, Match, Screen
 from libqtile.command import lazy
 from qtile_extras import widget
 from qtile_extras.widget.decorations import BorderDecoration
