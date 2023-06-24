@@ -35,7 +35,7 @@
 | Super + Shift + Up/j | Move Window Up |
 | Super + Shift + Down/k | Move Window Down |
 | Super + Shift + Right/l | Move Window Right |
-| Tab + {X}	| Go To {X} Workspace |
+| Super + {X}	| Go To {X} Workspace |
 | Alt + Tab	| Go To Next Workspace |
 | Alt + Shift + Tab | Go To Previous Work| space |
 | Super + Shift + {X} | Move Window To {X} Workspace |
