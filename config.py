@@ -97,7 +97,6 @@ def window_to_next_group(qtile):
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
 
-
 keys = [
 # SOUND KEYS
     Key([mod], "F9", changeSoundOutput()),
