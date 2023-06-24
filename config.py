@@ -492,7 +492,7 @@ def assign_app_group(client):
     d[group_names[2]] = [ "Atom", "Subl", "Geany", "Brackets", "Code-oss", "Code", "atom", "subl", "geany", "brackets", "code-oss", "code", "Meld", "meld", "org.gnome.meld" "org.gnome.Meld", "Alacritty", "Xfce4-taskmanager", "xfce4-taskmanager", ]
     d[group_names[3]] = ["Okular", "okular", "libreoffice", "Libreoffice", "soffice","eog", "Eog", "DesktopEditors", "ONLYOFFICE Desktop Editors", "Inkscape", "Nomacs", "Ristretto", "Nitrogen", "Feh", "inkscape", "nomacs", "ristretto", "nitrogen", "feh", "Gimp", "gimp", "libreoffice-writer", "libreoffice-calc", "libreoffice-impress", "libreoffice-draw", "libreoffice-base", "krita", ]
     d[group_names[4]] = ["VirtualBox Manager", "VirtualBox Machine", "Vmplayer", "virtualbox manager", "virtualbox machine", "vmplayer", "VirtualBox", "VirtualBoxVM", ]
-    d[group_names[5]] = ["telegram-desktop", "TelegramDesktop", "Zoom", "zoom", "discord", "Discord", ]
+    d[group_names[5]] = ["telegram-desktop", "TelegramDesktop", "Zoom", "zoom", "zoom ", "discord", "Discord", ]
     d[group_names[6]] = ["Spotify", "Pragha", "Alacritty", "Clementine", "Deadbeef", "Audacious", "spotify", "pragha", "clementine", "deadbeef", "audacious", "vlc", ]
     d[group_names[7]] = ["obs", "Obs", "guvcview", "Guvcview"]
     d[group_names[8]] = [ ]
