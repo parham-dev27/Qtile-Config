@@ -97,6 +97,7 @@ def window_to_next_group(qtile):
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
 
+
 keys = [
 # SOUND KEYS
     Key([mod], "F9", changeSoundOutput()),
@@ -114,8 +115,9 @@ keys = [
     Key([mod, "shift"], "r", lazy.restart()),
 
 # QTILE LAYOUT KEYS
-    Key([mod], "n", lazy.layout.reset()),
+    Key([mod], "r", lazy.layout.reset()),
     Key([mod], "Tab", lazy.next_layout()),
+    Key([mod], "n", lazy.window.toggle_floating()),
 
 # CHANGE FOCUS
     Key([mod], "Up", lazy.layout.up()),
@@ -487,7 +489,7 @@ dgroups_app_rules = []
 @hook.subscribe.client_new
 def assign_app_group(client):
     d = {}
-    d[group_names[0]] = ["Navigator", "Firefox", "Vivaldi-stable", "Vivaldi-snapshot", "Chromium", "Google-chrome", "Brave", "Brave-browser", "navigator", "firefox", "vivaldi-stable", "vivaldi-snapshot", "chromium", "google-chrome", "brave", "brave-browser", "Evolution", "Geary", "Mail", "Thunderbird", "evolution", "geary", "mail", "thunderbird", "Msgcompose", ]
+    d[group_names[0]] = ["Navigator", "Firefox", "Vivaldi-stable", "Vivaldi-snapshot", "Chromium", "Google-chrome", "Brave", "Brave-browser", "navigator", "firefox", "vivaldi-stable", "vivaldi-snapshot", "chromium", "google-chrome", "brave", "brave-browser", "Evolution", "Geary", "Mail", "Thunderbird", "evolution", "geary", "mail", "thunderbird", "Msgcompose", "bitwarden", "Bitwarden"]
     d[group_names[1]] = ["Thunar", "Nemo", "Caja", "Nautilus", "org.gnome.Nautilus", "Pcmanfm", "Pcmanfm-qt", "thunar", "nemo", "caja", "nautilus", "org.gnome.nautilus", "pcmanfm", "pcmanfm-qt", ]
     d[group_names[2]] = [ "Atom", "Subl", "Geany", "Brackets", "Code-oss", "Code", "atom", "subl", "geany", "brackets", "code-oss", "code", "Meld", "meld", "org.gnome.meld" "org.gnome.Meld", "Alacritty", "Xfce4-taskmanager", "xfce4-taskmanager", ]
     d[group_names[3]] = ["Okular", "okular", "libreoffice", "Libreoffice", "soffice","eog", "Eog", "DesktopEditors", "ONLYOFFICE Desktop Editors", "Inkscape", "Nomacs", "Ristretto", "Nitrogen", "Feh", "inkscape", "nomacs", "ristretto", "nitrogen", "feh", "Gimp", "gimp", "libreoffice-writer", "libreoffice-calc", "libreoffice-impress", "libreoffice-draw", "libreoffice-base", "krita", ]
@@ -497,7 +499,7 @@ def assign_app_group(client):
     d[group_names[7]] = ["obs", "Obs", "guvcview", "Guvcview"]
     d[group_names[8]] = [ ]
     
-    allowToBeInGroup = ["xfce4-terminal", "Xfce4-terminal", "gnome-calculator", "xfce4-notifyd", "Xfce4-notifyd", "gsimplecal", "spectacle", "polkit-gnome-authentication-agent-1", "Toolkit", "notification", "toolbar", "splash", "dialog"]
+    allowToBeInGroup = ["xfce4-terminal", "Xfce4-terminal", "gnome-calculator", "xfce4-notifyd", "Xfce4-notifyd", "gsimplecal", "spectacle", "polkit-gnome-authentication-agent-1", "Toolkit", "notification", "toolbar", "splash", "dialog",]
 
 
     wm_class = client.window.get_wm_class()

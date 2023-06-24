@@ -20,7 +20,8 @@
 | Super + Space	| Switch Keyboard Layout |
 | Super + q	| Quit Application |
 | Super + Shift + r	| Restart Qtile |
-| Super + n	| Normalize |
+| Super + n	| Normalize (Toggle Floating) |
+| Super + r | Reset Layout | 
 | Super + Tab | Next Layout |
 | Super + Left/h | Focus Left |
 | Super + Up/j | Focus Up |
