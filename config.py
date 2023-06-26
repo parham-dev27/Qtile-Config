@@ -67,9 +67,9 @@ def gsimplecal(qtile):
 def changeSoundOutput(qtile):
     active_device = subprocess.check_output(["pactl",  "get-default-sink"]).decode().strip()
     if active_device == "alsa_output.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-stereo":
-        subprocess.Popen(["pacmd", "set-default-sink", "alsa_output.pci-0000_00_1f.3.analog-stereo"])
+        subprocess.Popen(["pactl", "set-default-sink", "alsa_output.pci-0000_00_1f.3.analog-stereo"])
     else:
-        subprocess.Popen(["pacmd", "set-default-sink", "alsa_output.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-stereo"])
+        subprocess.Popen(["pactl", "set-default-sink", "alsa_output.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-stereo"])
 
 @lazy.function
 def switchLayout(qtile):
