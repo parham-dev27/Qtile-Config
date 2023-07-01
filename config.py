@@ -34,6 +34,7 @@ from libqtile.config import Drag, Group, Key, Match, Screen
 from libqtile.command import lazy
 from qtile_extras import widget
 from qtile_extras.widget.decorations import BorderDecoration
+import re
 
 
 mod = "mod4"
@@ -45,6 +46,10 @@ home = os.path.expanduser('~')
 @lazy.function
 def muteVolume(qtile):
     subprocess.call(['amixer', '-D', 'pulse', 'set', "Master", "1+", "toggle"])
+    if re.search(r'\[(\w+)\]$', subprocess.check_output(["amixer", "get", "Master"]).decode(), re.MULTILINE).group(1) == "on":
+        subprocess.Popen(["dunstify", "-a", "SoundVolume", "-t", "1200", "-r", "9991", "-u", "low", "-i", "audio-volume-high-symbolic", "Unmuted"])
+    else:
+        subprocess.Popen(["dunstify", "-a", "SoundVolume", "-t", "1200", "-r", "9991", "-u", "low", "-i", "audio-volume-muted-symbolic", "Muted"])
 
 @lazy.function
 def increaseVolume(qtile):
@@ -67,8 +72,10 @@ def changeSoundOutput(qtile):
     active_device = subprocess.check_output(["pactl",  "get-default-sink"]).decode().strip()
     if active_device == "alsa_output.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-stereo":
         subprocess.Popen(["pactl", "set-default-sink", "alsa_output.pci-0000_00_1f.3.analog-stereo"])
+        subprocess.Popen(["dunstify", "-a", "ChangeSoundOutput", "-t", "1200", "-r", "9994", "-u", "low", "-i", "soundcard", "Sound Output Device", "Headset"])
     else:
         subprocess.Popen(["pactl", "set-default-sink", "alsa_output.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-stereo"])
+        subprocess.Popen(["dunstify", "-a", "ChangeSoundOutput", "-t", "1200", "-r", "9994", "-u", "low", "-i", "soundcard", "Sound Output Device", "Speaker"])
 
 @lazy.function
 def switchLayout(qtile):
@@ -80,10 +87,10 @@ def switchLayout(qtile):
     output_str = output.decode('utf-8').strip()
 
     if output_str.lower() == "de":
-        subprocess.Popen(["dunstify", "-a", "ChangeKeyboardLayout", "-t", "2000", "-r", "9993", "-u", "low", "-i", "input-keyboard-symbolic", "Persian"])
+        subprocess.Popen(["dunstify", "-a", "ChangeKeyboardLayout", "-t", "1200", "-r", "9993", "-u", "low", "-i", "input-keyboard-symbolic", "Persian"])
         subprocess.Popen(['setxkbmap', '-layout', 'ir,de'])
     else:
-        subprocess.Popen(["dunstify", "-a", "ChangeKeyboardLayout", "-t", "2000", "-r", "9993", "-u", "low", "-i", "input-keyboard-symbolic", "Deutsch"])
+        subprocess.Popen(["dunstify", "-a", "ChangeKeyboardLayout", "-t", "1200", "-r", "9993", "-u", "low", "-i", "input-keyboard-symbolic", "Deutsch"])
         subprocess.Popen(['setxkbmap', '-layout', 'de'])
 
 @lazy.function
