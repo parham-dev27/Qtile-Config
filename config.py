@@ -61,8 +61,7 @@ def decreaseVolume(qtile):
 @lazy.function
 def gsimplecal(qtile):
     qtile.cmd_spawn("gsimplecal")
-    
-    
+
 @lazy.function
 def changeSoundOutput(qtile):
     active_device = subprocess.check_output(["pactl",  "get-default-sink"]).decode().strip()
@@ -81,8 +80,10 @@ def switchLayout(qtile):
     output_str = output.decode('utf-8').strip()
 
     if output_str.lower() == "de":
+        subprocess.Popen(["dunstify", "-a", "ChangeKeyboardLayout", "-t", "2000", "-r", "9993", "-u", "low", "-i", "input-keyboard-symbolic", "Persian"])
         subprocess.Popen(['setxkbmap', '-layout', 'ir,de'])
     else:
+        subprocess.Popen(["dunstify", "-a", "ChangeKeyboardLayout", "-t", "2000", "-r", "9993", "-u", "low", "-i", "input-keyboard-symbolic", "Deutsch"])
         subprocess.Popen(['setxkbmap', '-layout', 'de'])
 
 @lazy.function
@@ -489,7 +490,7 @@ dgroups_app_rules = []
 @hook.subscribe.client_new
 def assign_app_group(client):
     d = {}
-    d[group_names[0]] = ["Navigator", "Firefox", "Vivaldi-stable", "Vivaldi-snapshot", "Chromium", "Google-chrome", "Brave", "Brave-browser", "navigator", "firefox", "vivaldi-stable", "vivaldi-snapshot", "chromium", "google-chrome", "brave", "brave-browser", "Evolution", "Geary", "Mail", "Thunderbird", "evolution", "geary", "mail", "thunderbird", "Msgcompose", "bitwarden", "Bitwarden"]
+    d[group_names[0]] = ["Navigator", "Firefox", "Vivaldi-stable", "Vivaldi-snapshot", "Chromium", "Google-chrome", "Brave", "Brave-browser", "navigator", "firefox", "vivaldi-stable", "vivaldi-snapshot", "chromium", "google-chrome", "brave", "brave-browser", "Evolution", "Geary", "Mail", "Thunderbird", "evolution", "geary", "mail", "thunderbird", "Msgcompose", "bitwarden", "Bitwarden", "persepolis"]
     d[group_names[1]] = ["Thunar", "Nemo", "Caja", "Nautilus", "org.gnome.Nautilus", "Pcmanfm", "Pcmanfm-qt", "thunar", "nemo", "caja", "nautilus", "org.gnome.nautilus", "pcmanfm", "pcmanfm-qt", ]
     d[group_names[2]] = [ "Atom", "Subl", "Geany", "Brackets", "Code-oss", "Code", "atom", "subl", "geany", "brackets", "code-oss", "code", "Meld", "meld", "org.gnome.meld" "org.gnome.Meld", "Alacritty", "Xfce4-taskmanager", "xfce4-taskmanager", ]
     d[group_names[3]] = ["Okular", "okular", "libreoffice", "Libreoffice", "soffice","eog", "Eog", "DesktopEditors", "ONLYOFFICE Desktop Editors", "Inkscape", "Nomacs", "Ristretto", "Nitrogen", "Feh", "inkscape", "nomacs", "ristretto", "nitrogen", "feh", "Gimp", "gimp", "libreoffice-writer", "libreoffice-calc", "libreoffice-impress", "libreoffice-draw", "libreoffice-base", "krita", ]
@@ -566,7 +567,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='archlinux-logout'),
     Match(wm_class='xfce4-terminal'),
     Match(wm_class="spectacle"),
-
+    Match(wm_class="persepolis"),
 ],  fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
 
