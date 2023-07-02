@@ -43,7 +43,9 @@ mod2 = "control"
 home = os.path.expanduser('~')
 
 
-def notification(current_volume:int) -> None:
+def notification() -> None:
+    output = subprocess.check_output(['amixer', 'sget', 'Master']).decode()
+    current_volume = int(output.split('[')[1].split('%')[0])
     if current_volume == 0:
         subprocess.Popen(["dunstify", "-a", "SoundVolume", "-t", "1200", "-r", "9991", "-u", "low", "-i", "audio-volume-muted-symbolic", "-h", f"int:value:{current_volume}", f"Volume: {current_volume}%"])
     elif current_volume in range(1, 31):
@@ -66,14 +68,14 @@ def increaseVolume(qtile):
     output = subprocess.check_output(['amixer', 'sget', 'Master']).decode()
     current_volume = int(output.split('[')[1].split('%')[0])
     subprocess.call(['amixer', '-q', 'sset', 'Master', f"{min(current_volume + 5, 100)}%"])
-    notification(current_volume)
+    notification()
 
 @lazy.function
 def decreaseVolume(qtile):
     output = subprocess.check_output(['amixer', 'sget', 'Master']).decode()
     current_volume = int(output.split('[')[1].split('%')[0])
     subprocess.call(['amixer', '-q', 'sset', 'Master', f"{max(current_volume - 5, 0)}%"])
-    notification(current_volume)
+    notification()
 
 @lazy.function
 def gsimplecal(qtile):
