@@ -43,6 +43,16 @@ mod2 = "control"
 home = os.path.expanduser('~')
 
 
+def notification(current_volume:int) -> None:
+    if current_volume == 0:
+        subprocess.Popen(["dunstify", "-a", "SoundVolume", "-t", "1200", "-r", "9991", "-u", "low", "-i", "audio-volume-muted-symbolic", "-h", f"int:value:{current_volume}", f"Volume: {current_volume}%"])
+    elif current_volume in range(1, 31):
+        subprocess.Popen(["dunstify", "-a", "SoundVolume", "-t", "1200", "-r", "9991", "-u", "low", "-i", "audio-volume-low-symbolic", "-h", f"int:value:{current_volume}", f"Volume: {current_volume}%"])
+    elif current_volume in range(31, 71):
+        subprocess.Popen(["dunstify", "-a", "SoundVolume", "-t", "1200", "-r", "9991", "-u", "low", "-i", "audio-volume-medium-symbolic", "-h", f"int:value:{current_volume}", f"Volume: {current_volume}%"])
+    elif current_volume in range(71, 101):
+        subprocess.Popen(["dunstify", "-a", "SoundVolume", "-t", "1200", "-r", "9991", "-u", "low", "-i", "audio-volume-high-symbolic", "-h", f"int:value:{current_volume}", f"Volume: {current_volume}%"])
+
 @lazy.function
 def muteVolume(qtile):
     subprocess.call(['amixer', '-D', 'pulse', 'set', "Master", "1+", "toggle"])
@@ -56,12 +66,14 @@ def increaseVolume(qtile):
     output = subprocess.check_output(['amixer', 'sget', 'Master']).decode()
     current_volume = int(output.split('[')[1].split('%')[0])
     subprocess.call(['amixer', '-q', 'sset', 'Master', f"{min(current_volume + 5, 100)}%"])
+    notification(current_volume)
 
 @lazy.function
 def decreaseVolume(qtile):
     output = subprocess.check_output(['amixer', 'sget', 'Master']).decode()
     current_volume = int(output.split('[')[1].split('%')[0])
     subprocess.call(['amixer', '-q', 'sset', 'Master', f"{max(current_volume - 5, 0)}%"])
+    notification(current_volume)
 
 @lazy.function
 def gsimplecal(qtile):
