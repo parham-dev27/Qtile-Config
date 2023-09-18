@@ -2,7 +2,7 @@
 
 ## Screenshots 🖥️
 
-![Qtile Screenshots](assets/Screenshot-1.png)
+![Qtile Screenshots](assets/Screenshot-1.png)x
 
 ![Qtile Screenshots](assets/Screenshot-2.png)
 
